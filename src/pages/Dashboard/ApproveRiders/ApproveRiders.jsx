@@ -3,7 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaUserCheck } from "react-icons/fa";
 import { IoPersonRemove } from "react-icons/io5";
-import { FaTrashCan } from "react-icons/fa6";
+import { FaE, FaEye, FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
 
 const ApproveRiders = () => {
@@ -51,7 +51,8 @@ const ApproveRiders = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Status</th>
+              <th>Application Status</th>
+              <th>Work Status</th>
               <th>District</th>
               <th>Actions</th>
             </tr>
@@ -70,17 +71,22 @@ const ApproveRiders = () => {
                     {rider.status}
                   </p>
                 </td>
+                <td>{rider.workStatus}</td>
                 <td>{rider.District}</td>
                 <td>
+                  <button className="btn btn-sm ">
+                    <FaEye></FaEye>
+                  </button>
                   <button
                     onClick={() => handleApproval(rider)}
                     className="btn btn-sm "
                   >
                     <FaUserCheck></FaUserCheck>
                   </button>
+
                   <button
                     onClick={() => handleRejct(rider)}
-                    className="btn btn-sm "
+                    className="btn btn-sm"
                   >
                     <IoPersonRemove></IoPersonRemove>
                   </button>

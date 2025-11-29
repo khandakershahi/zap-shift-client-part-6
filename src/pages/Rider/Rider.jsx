@@ -95,7 +95,7 @@ const Rider = () => {
               <fieldset className="fieldset">
                 <legend className="fieldset-legend">District</legend>
                 <select
-                  {...register("District")}
+                  {...register("district")}
                   defaultValue="Pick a District"
                   className="select"
                 >

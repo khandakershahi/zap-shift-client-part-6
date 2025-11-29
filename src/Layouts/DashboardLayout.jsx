@@ -1,12 +1,17 @@
 import React from "react";
-import { FaHistory, FaMotorcycle } from "react-icons/fa";
+import { FaHistory, FaMotorcycle, FaUser } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { NavLink } from "react-router";
 import { Link } from "react-router";
 import { Outlet } from "react-router";
+import useRole from "../hooks/useRole";
+import { RiEBike2Fill } from "react-icons/ri";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
+  // console.log("in the dashboard", role);
+
   return (
     <div className="drawer lg:drawer-open max-w-7xl mx-auto">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -95,16 +100,46 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Payment History</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/dashboard/approve-riders"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Approve Riders"
-              >
-                <FaMotorcycle className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Approve Riders</span>
-              </NavLink>
-            </li>
+            {role === "admin" && (
+              <>
+                <li>
+                  <NavLink
+                    to="/dashboard/approve-riders"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Approve Riders"
+                  >
+                    <FaMotorcycle className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Approve Riders
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/users-management"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Management"
+                  >
+                    <FaUser className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Users Management
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/assign-riders"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip=" Assign Riders"
+                  >
+                    <RiEBike2Fill className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Assign Riders
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* List item */}
             <li>
